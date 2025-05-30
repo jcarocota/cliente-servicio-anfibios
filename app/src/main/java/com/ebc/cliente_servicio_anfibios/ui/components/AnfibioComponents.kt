@@ -1,8 +1,11 @@
 package com.ebc.cliente_servicio_anfibios.ui.components
 
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
@@ -79,5 +82,20 @@ private fun AnfibioCardPreview() {
     )
 
     AnfibioCard(anfibio = anfibio)
+}
+
+@Composable
+fun AnfibiosListScreen(
+    listaAnfibios: List<Anfibio>,
+    modifier: Modifier = Modifier,
+    paddingContenido: PaddingValues = PaddingValues(0.dp)
+) {
+    LazyColumn(
+        modifier = modifier,
+        contentPadding = paddingContenido,
+        verticalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+
+    }
 }
 
