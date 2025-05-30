@@ -48,10 +48,16 @@ fun AnfibioCard(anfibio: Anfibio, modifier: Modifier = Modifier) {
                     .data(anfibio.imgSrc)
                     .crossfade(true)
                     .build(),
-                contentDescription = "Anfibio",
+                contentDescription = anfibio.description,
                 contentScale = ContentScale.FillWidth,
                 error = painterResource(R.drawable.ic_launcher_background),
                 placeholder = painterResource(R.drawable.ic_launcher_background)
+            )
+            Text(
+                text = anfibio.description,
+                style = MaterialTheme.typography.titleMedium,
+                textAlign = TextAlign.Justify,
+                modifier = Modifier.padding(16.dp)
             )
 
         }
@@ -74,3 +80,4 @@ private fun AnfibioCardPreview() {
 
     AnfibioCard(anfibio = anfibio)
 }
+
