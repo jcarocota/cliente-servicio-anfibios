@@ -110,7 +110,33 @@ fun AnfibiosListScreen(
     }
 }
 
+@Preview(showBackground = true)
 @Composable
-fun AnfibiosListScreen() {
+private fun AnfibiosListScreenPreview() {
+    val anfibio1: Anfibio = Anfibio(
+        name = "Great Basin Spadefoot",
+        type = "Mi Preview",
+        description = "This toad spends most of its " +
+                "life underground due to the arid desert conditions " +
+                "in which it lives. Spadefoot toads earn the name because " +
+                "of their hind legs which are wedged to aid in digging. They " +
+                "are typically grey, green, or brown with dark spots.",
+        imgSrc = "https://developer.android.com/codelabs/basic-android-kotlin-compose-amphibians-app/img/great-basin-spadefoot.png"
+    )
+
+    val anfibio2: Anfibio = Anfibio(
+        name = "Great Basin Spadefoot 2",
+        type = "Mi Preview 2",
+        description = "This toad spends most of its " +
+                "life underground due to the arid desert conditions " +
+                "in which it lives. Spadefoot toads earn the name because " +
+                "of their hind legs which are wedged to aid in digging. They " +
+                "are typically grey, green, or brown with dark spots.",
+        imgSrc = "https://developer.android.com/codelabs/basic-android-kotlin-compose-amphibians-app/img/great-basin-spadefoot.png"
+    )
+
+    val anfibiosList = mutableListOf(anfibio1, anfibio2)
+
+    AnfibiosListScreen(listaAnfibios = anfibiosList, paddingContenido = PaddingValues(10.dp))
 }
 
