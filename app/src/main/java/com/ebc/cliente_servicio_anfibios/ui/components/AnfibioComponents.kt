@@ -1,5 +1,6 @@
 package com.ebc.cliente_servicio_anfibios.ui.components
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
@@ -9,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -140,3 +142,36 @@ private fun AnfibiosListScreenPreview() {
     AnfibiosListScreen(listaAnfibios = anfibiosList, paddingContenido = PaddingValues(10.dp))
 }
 
+@Preview(showBackground = true)
+@Composable
+fun LoadingScreen(modifier: Modifier = Modifier) {
+    Image(
+        painter = painterResource(R.drawable.loading_img),
+        contentDescription = "Cargando",
+        modifier = modifier
+    )
+}
+
+@Composable
+fun ErrorScreen(
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Column(
+        modifier = modifier,
+        verticalArrangement = Arrangement.Center,
+        horizontalAlignment = Alignment.CenterHorizontally
+    ) {
+        Text(text = "¡Hubo un error!")
+        Button(onClick = retryAction) {
+            Text(text = "Intentar nuevamente")
+        }
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+private fun ErrorScreenPreview() {
+    ErrorScreen(retryAction = { println("error!!") },
+        modifier = Modifier.fillMaxSize())
+}
