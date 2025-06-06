@@ -11,7 +11,11 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewmodel.compose.viewModel
+import com.ebc.cliente_servicio_anfibios.ui.components.HomeScreen
 import com.ebc.cliente_servicio_anfibios.ui.theme.ClienteservicioanfibiosTheme
+import com.ebc.cliente_servicio_anfibios.viewmodels.AnfibiosViewModel
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,9 +24,12 @@ class MainActivity : ComponentActivity() {
         setContent {
             ClienteservicioanfibiosTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
+                    val anfibiosViewModel:AnfibiosViewModel =
+                        viewModel(factory = AnfibiosViewModel.Factory)
+                    HomeScreen(
+                        anfibioUiState = anfibiosViewModel.amphibiansUiState,
+                        retryAction = anfibiosViewModel::getAnfibios,
+                        modifier = Modifier.fillMaxSize().padding(innerPadding)
                     )
                 }
             }

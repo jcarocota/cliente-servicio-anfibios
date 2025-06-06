@@ -28,6 +28,7 @@ import coil.compose.AsyncImage
 import coil.request.ImageRequest
 import com.ebc.cliente_servicio_anfibios.R
 import com.ebc.cliente_servicio_anfibios.models.Anfibio
+import com.ebc.cliente_servicio_anfibios.viewmodels.AnfibioUiState
 
 @Composable
 fun AnfibioCard(anfibio: Anfibio, modifier: Modifier = Modifier) {
@@ -174,4 +175,24 @@ fun ErrorScreen(
 private fun ErrorScreenPreview() {
     ErrorScreen(retryAction = { println("error!!") },
         modifier = Modifier.fillMaxSize())
+}
+
+@Composable
+fun HomeScreen(
+    anfibioUiState: AnfibioUiState,
+    retryAction: () -> Unit,
+    modifier: Modifier = Modifier,
+    contendPadding: PaddingValues = PaddingValues(0.dp)
+) {
+    when(anfibioUiState) {
+        is AnfibioUiState.Loading -> LoadingScreen(
+            modifier = modifier.fillMaxWidth()
+        )
+        is AnfibioUiState.Error -> ErrorScreen(retryAction = retryAction, modifier = modifier)
+        is AnfibioUiState.Success -> AnfibiosListScreen(
+            listaAnfibios = anfibioUiState.anfibios,
+            modifier = modifier.padding(16.dp),
+            paddingContenido = contendPadding
+        )
+    }
 }
